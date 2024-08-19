@@ -5,7 +5,6 @@ import './App.css'
 function Notification({info}) {
   if (!info.message)
     return
-  console.log(info)
 
   const style = {
     color: info.type === 'error' ? 'red' : 'green',
@@ -60,8 +59,13 @@ function App() {
         <p>
           link &nbsp;
           <input type="text" required value={newLinkOut} onChange={e => setNewLinkOut(e.target.value)}/>
-          &nbsp; to &nbsp; 
-          {window.location.href}<input type="text" placeholder='optional' value={newLinkIn} onChange={e => setNewLinkIn(e.target.value)}/>
+        </p>
+        <p>
+          to 
+        </p>
+        <p>
+          {window.location.href}
+          <input type="text" placeholder='optional' style={ { width: 100 } }value={newLinkIn} onChange={e => setNewLinkIn(e.target.value)}/>
         </p>
         <button type='submit'>GET URL</button>
         <Notification info={info}/>
