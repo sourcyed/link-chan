@@ -30,8 +30,6 @@ function App() {
   const [newLinkOut, setNewLinkOut] = useState('')
   const [info, setInfo] = useState({ message: null })
 
-  const baseUrl = 'http://localhost:3001/'
-
   const clearFields = () => {
     setNewLinkIn('')
     setNewLinkOut('')
@@ -46,9 +44,9 @@ function App() {
   const addUrl = e => {
     e.preventDefault()
     const newLink = { linkIn: newLinkIn, linkOut: newLinkOut }
-    axios.post(baseUrl + 'api/links', newLink)
+    axios.post('/api/links', newLink)
       .then(r => {
-        const url = baseUrl + r.data.linkIn
+        const url = window.location.href + r.data.linkIn
         notifyWith(<a href={url}>{url}</a>)
         clearFields()
       })
@@ -63,7 +61,7 @@ function App() {
           link &nbsp;
           <input type="text" required value={newLinkOut} onChange={e => setNewLinkOut(e.target.value)}/>
           &nbsp; to &nbsp; 
-          linkchan.com/<input type="text" placeholder='optional' value={newLinkIn} onChange={e => setNewLinkIn(e.target.value)}/>
+          {window.location.href}<input type="text" placeholder='optional' value={newLinkIn} onChange={e => setNewLinkIn(e.target.value)}/>
         </p>
         <button type='submit'>GET URL</button>
         <Notification info={info}/>
