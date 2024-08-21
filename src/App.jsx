@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import axios from 'axios'
 import './App.css'
+import linkChanSong from '/link-chan.mp3'
 
 function Notification({info}) {
   if (!info.message)
@@ -29,6 +30,8 @@ function App() {
   const [newLinkOut, setNewLinkOut] = useState('')
   const [info, setInfo] = useState({ message: null })
 
+  const audioRef = useRef(null)
+
   const clearFields = () => {
     setNewLinkIn('')
     setNewLinkOut('')
@@ -52,10 +55,26 @@ function App() {
       .catch(e => notifyWith(e.response.data.error, 'error'))
   }
 
+  const handleLogoClick = e => {
+    if (e.target.className === 'spin')
+      return
+    e.target.className = 'spin'
+    if (audioRef.current)
+    {
+      audioRef.current.play()
+    }
+    else
+      console.log("couldn't find audio file")
+  }
+
   return (
     <>
-      <img src="/link-chan.png" alt="" width="256px" height="256px" />
-      <h2>Link-Chan Link Generator</h2>
+      <audio ref={audioRef}>
+        <source src={linkChanSong} type='audio/mpeg'/>
+        Your browser does not support the audio element.
+      </audio>
+      <img src="/link-chan.png" alt="" width="256px" height="256px" onClick={handleLogoClick} />
+      <h2>Link-Chan Link Generator</h2>   
       <form onSubmit={addUrl}>
         <p>
           link &nbsp;
