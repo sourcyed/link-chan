@@ -54,7 +54,8 @@ function App() {
 
   return (
     <>
-      <h1>Link-Chan Link Generator</h1>
+      <img src="/link-chan.png" alt="" width="256px" height="256px" />
+      <h2>Link-Chan Link Generator</h2>
       <form onSubmit={addUrl}>
         <p>
           link &nbsp;
