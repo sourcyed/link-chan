@@ -18,6 +18,11 @@ img.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+#link-chan-cheering {
+  padding: 0;
+  border: black groove 3px;
+}
+
 @keyframes spin {
   0% {
       transform: rotate(-10deg);

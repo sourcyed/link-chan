@@ -14,13 +14,15 @@ function Notification({info}) {
     borderStyle: 'solid',
     borderRadius: 5,
     padding: 10,
-    marginBottom: 10
+    marginBottom: 10,
   }
-
+console.log(info.message)
+  const img = info.type !== 'error' ? <p><a href={info.message.props.href}><img src='/link-chan-cheering.png' width='256px' height='256px' id='link-chan-cheering' /></a></p> : null
 
   return (
     <div style={style}>
       {info.message}
+      {img}
     </div>
   )
 }
